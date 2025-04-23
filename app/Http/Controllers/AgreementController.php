@@ -54,4 +54,8 @@ class AgreementController extends Controller
             return response()->json(['message'=>' Agreement could not be deleted or found.']);
         }
     }
+
+    public function getStatus(){
+        return Agreement::statusCount();
+    }
 }

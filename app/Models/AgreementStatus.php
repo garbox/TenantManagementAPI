@@ -1,5 +1,4 @@
 <?php
-// app/Models/AgreementStatus.php
 
 namespace App\Models;
 
@@ -9,8 +8,8 @@ class AgreementStatus extends Model
 {
     protected $fillable = ['name', 'description'];
 
-    public function agreements()
-    {
+    // One AgreementStatus has many Agreements
+    public function agreements(){
         return $this->hasMany(Agreement::class, 'agreement_status_id');
     }
 }

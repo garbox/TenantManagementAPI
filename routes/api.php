@@ -15,10 +15,12 @@ use App\Http\Controllers\RoleController;
 use App\Models\MaintenanceStatus;
 
 Route::middleware('auth:sanctum')->group(function () {
+});
     Route::resource('user', UserController::class)->except(['create', 'edit', 'store']);
     Route::resource('role', RoleController::class)->except(['create', 'edit']);
     Route::resource('property', PropertyController::class)->except(['create', 'edit']);
     Route::resource('agreement', AgreementController::class)->except(['create', 'edit']);
+    Route::get('agreement/report/status', [AgreementController::class, 'getStatus'])->name('agreement.status');
     Route::get('maintenance/search', [MaintenanceController::class, 'search'])->name('maintenance.search');
     Route::resource('maintenance/request', MaintenanceController::class)->except(['create', 'edit']);
     Route::put('user/{user}/role', [UserController::class, 'updateRole'])->name('user.role.update');
@@ -31,7 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::resource('state', RoleController::class)->except(['create', 'edit', 'update', 'store', 'destroy']);
 
-});
 Route::post('login', [UserController::class, 'login'])->name('user.login');
 Route::post('user/register', [UserController::class, 'store'])->name('user.register');
 Route::resource('maintenance/status', MaintenanceStatus::class)->except(['create', 'edit','update', 'destroy', 'store']);
