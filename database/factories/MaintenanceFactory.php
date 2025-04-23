@@ -26,7 +26,7 @@ class MaintenanceFactory extends Factory
             'property_id' => Property::inRandomOrder()->first()->id,
             'description' => fake()->sentence(),
             'maintenance_status_id' => MaintenanceStatus::inRandomOrder()->first()->id,
-            'assigned_to' => User::where('role_id', 2)->inRandomOrder()->first()->id,
+            'assigned_to' => fake()->boolean(70) ? User::where('role_id', 2)->inRandomOrder()->first()?->id : null,
         ];
     }
 }

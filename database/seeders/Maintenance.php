@@ -44,6 +44,6 @@ class Maintenance extends Seeder
         MaintenanceModel::factory()->count(20)->create();
 
         // Generate 40 expenses (2 per maintenance on average)
-        MaintenanceExpense::factory()->count(40)->create();
+        MaintenanceExpense::factory()->count(100)->create();
     }
 }
