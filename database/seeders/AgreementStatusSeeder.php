@@ -13,20 +13,20 @@ class AgreementStatusSeeder extends Seeder
     public function run(): void
     {
         $statuses = [
-            ['name' => 'draft', 'description' => 'Not finalized or sent'],
-            ['name' => 'pending_approval', 'description' => 'Waiting for approval'],
-            ['name' => 'approved', 'description' => 'Approved by all parties'],
-            ['name' => 'rejected', 'description' => 'Rejected by one or more parties'],
-            ['name' => 'awaiting_signature', 'description' => 'Ready to sign'],
-            ['name' => 'partially_signed', 'description' => 'Some signatures received'],
-            ['name' => 'signed', 'description' => 'Fully signed'],
-            ['name' => 'active', 'description' => 'Currently in effect'],
-            ['name' => 'expired', 'description' => 'Reached end date'],
-            ['name' => 'terminated', 'description' => 'Ended before completion'],
-            ['name' => 'cancelled', 'description' => 'Cancelled before taking effect'],
-            ['name' => 'renewal_pending', 'description' => 'Renewal in progress'],
-            ['name' => 'renewed', 'description' => 'Successfully renewed'],
-            ['name' => 'archived', 'description' => 'Stored for records'],
+            ['name' => 'Draft', 'description' => 'Not finalized or sent'],
+            ['name' => 'Pending_approval', 'description' => 'Waiting for approval'],
+            ['name' => 'Approved', 'description' => 'Approved by all parties'],
+            ['name' => 'Rejected', 'description' => 'Rejected by one or more parties'],
+            ['name' => 'Awaiting_signature', 'description' => 'Ready to sign'],
+            ['name' => 'Partially_signed', 'description' => 'Some signatures received'],
+            ['name' => 'Signed', 'description' => 'Fully signed'],
+            ['name' => 'Active', 'description' => 'Currently in effect'],
+            ['name' => 'Expired', 'description' => 'Reached end date'],
+            ['name' => 'Terminated', 'description' => 'Ended before completion'],
+            ['name' => 'Cancelled', 'description' => 'Cancelled before taking effect'],
+            ['name' => 'Renewal_pending', 'description' => 'Renewal in progress'],
+            ['name' => 'Renewed', 'description' => 'Successfully renewed'],
+            ['name' => 'Archived', 'description' => 'Stored for records'],
         ];
 
         foreach ($statuses as $status) {

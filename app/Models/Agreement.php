@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\User;
 use App\Models\Property;
 use App\Models\AgreementStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Agreement extends Model
 {
+    use HasFactory;
     protected $fillable = [ 'user_id', 'property_id', 'file_name', 'security_deposit', 'rent', 'start_date', 'end_date'];
 
     protected $hidden = [ 'created_at', 'updated_at'];

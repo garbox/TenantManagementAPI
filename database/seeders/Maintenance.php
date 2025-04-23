@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\MaintenanceStatus;
-use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Maintenance as MaintenanceModel;
+use App\Models\MaintenanceExpense;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -40,51 +40,10 @@ class Maintenance extends Seeder
             ['name' => 'Reopened', 'description' => 'The maintenance issue has been reopened after being marked as resolved.'],
             ['name' => 'Deferred', 'description' => 'The maintenance work has been postponed to a later date.'],
         ]); 
+        // Generate 20 maintenance records using the factory
+        MaintenanceModel::factory()->count(20)->create();
 
-        DB::table('maintenances')->insert([
-            'maintenance_type_id' => 1,
-            'user_id' => 1,
-            'property_id' => 1,
-            'description' => 'Fix the broken light switch in the living room',
-            'maintenance_status_id' => MaintenanceStatus::all()->random()->id,
-            'assigned_to' => User::where('role_id', 2)->first()->id,
-        ]);
-
-        DB::table('maintenances')->insert([
-            'maintenance_type_id' => 2,
-            'user_id' => 1,
-            'property_id' => 1,
-            'description' => 'AC blowing Hot Air',
-            'maintenance_status_id' => MaintenanceStatus::all()->random()->id,
-            'assigned_to' => User::where('role_id', 2)->first()->id,
-        ]);
-
-        DB::table('maintenances')->insert([
-            'maintenance_type_id' => 3,
-            'user_id' => 1,
-            'property_id' => 1,
-            'description' => 'Tree is leanding hard bro.',
-            'maintenance_status_id' => MaintenanceStatus::all()->random()->id,
-            'assigned_to' => User::where('role_id', 2)->first()->id,
-        ]);
-
-        DB::table('maintenance_expenses')->insert([
-            ['maintenance_id' => 1,
-            'user_id' => User::where('role_id', 2)->first()->id,
-            'expense' => 500,
-            'note' => 'some note about the expense'],
-            ['maintenance_id' => 1,
-            'user_id' => User::where('role_id', 2)->first()->id,
-            'expense' => 100,
-            'note' => 'some note about the expense'],
-            ['maintenance_id' => 1,
-            'user_id' => User::where('role_id', 2)->first()->id,
-            'expense' => 20,
-            'note' => 'some note about the expense'],
-            ['maintenance_id' => 1,
-            'user_id' => User::where('role_id', 2)->first()->id,
-            'expense' => 50,
-            'note' => 'some note about the expense'],
-        ]);
+        // Generate 40 expenses (2 per maintenance on average)
+        MaintenanceExpense::factory()->count(40)->create();
     }
 }
