@@ -43,7 +43,7 @@ class Maintenance extends Model
     }
 
     public function assignedTo(){
-    return $this->belongsTo(User::class, 'assigned_to');
-}
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 
 }
