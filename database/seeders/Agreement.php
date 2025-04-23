@@ -24,6 +24,7 @@ class Agreement extends Seeder
             'rent' => 1700,
             'start_date' => '2023-01-01',
             'end_date' => '2024-01-01',
+            'agreement_status_id' => 1
         ]);
     }
 }

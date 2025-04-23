@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AgreementStatus;
 use App\Models\Property;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->integer('rent');
             $table->date('start_date');
             $table->date('end_date');
-            $table->integer('status')->default(1);
+            $table->foreignIdFor(AgreementStatus::class)->references('id')->on('agreement_statuses');
             $table->timestamps();
         });
     }

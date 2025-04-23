@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PropertyOwner::class);
         $this->call(PropertySeeder::class);
         $this->call(Maintenance::class);
+        $this->call(AgreementStatusSeeder::class);
         $this->call(Agreement::class);
     }
 }
