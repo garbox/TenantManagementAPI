@@ -21,7 +21,7 @@ class MaintenanceExpenseController extends Controller
 
     // show single Exspenses (Role: user:admin, user:maintenence)
     public function store(MaintenaceExpenseStoreRequest $request){
-        return MaintenanceExpense::create($request->input())->toJson();
+        return MaintenanceExpense::create($request->input());
     }
 
     // update single Exspenses (Role: user:admin, user:maintenence)

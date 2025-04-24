@@ -10,12 +10,12 @@ class MaintienceTypeController extends Controller
 {
     // show all types  (user:admin)
     public function index(){
-        return MaintenanceType::all()->toJson();
+        return MaintenanceType::all();
     }
 
     // show single types (Role: user:admin, user:tenate, user:maintenence)
     public function show(int $type_id){
-        return MaintenanceType::findOrFail($type_id)->toJson();
+        return MaintenanceType::findOrFail($type_id);
     }
 
     // show single types (Role: user:admin, user:tenate, user:maintenence)
