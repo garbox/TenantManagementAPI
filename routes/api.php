@@ -12,7 +12,7 @@ use App\Http\Controllers\MaintenanceController;
 use App\Http\Controllers\PropertyOwnerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
-use App\Models\MaintenanceStatus;
+use App\Http\Controllers\MaintenanceStatusController;
 
 Route::middleware('auth:sanctum')->group(function () {
 });
@@ -35,7 +35,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::post('login', [UserController::class, 'login'])->name('user.login');
 Route::post('user/register', [UserController::class, 'store'])->name('user.register');
-Route::resource('maintenance/status', MaintenanceStatus::class)->except(['create', 'edit','update', 'destroy', 'store']);
+Route::resource('maintenance/status', MaintenanceStatusController::class)->except(['create', 'edit','update', 'destroy', 'store']);
 
 
 
