@@ -11,12 +11,12 @@ class MaintenanceController extends Controller
 {
     // show all Request  (user:admin)
     public function index(){
-        return Maintenance::with(['status', 'user', 'property', 'type'])->get()->toJson();
+        return Maintenance::with(['status', 'user', 'property', 'type'])->get();
     }
 
     // show single Request (Role: user:admin, user:tenate, user:maintenence)
     public function show(int $request_id){
-        return Maintenance::with('expenses', 'user', 'type', 'property', 'property.state', 'assignedTo')->findOrFail($request_id);
+        return Maintenance::with('expenses', 'user', 'user.role', 'type', 'property', 'property.state', 'assignedTo', 'status')->findOrFail($request_id);
     }
 
     // update single Request (Role: user:admin, user:tenate, user:maintenence)
