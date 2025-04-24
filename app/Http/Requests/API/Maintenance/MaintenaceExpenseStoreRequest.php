@@ -22,8 +22,9 @@ class MaintenaceExpenseStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'integer|required|existes:users,id',
-            'maintenance_id' => 'string|required|existes:mainteance.id',
+            'user_id' => 'required|exists:users,id',
+            'expense' => 'integer|min:1',
+            'maintenance_id' => 'required|exists:maintenances,id',
             'note' => 'string|required',
         ];
     }
