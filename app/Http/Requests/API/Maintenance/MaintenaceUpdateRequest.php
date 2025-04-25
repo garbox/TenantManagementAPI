@@ -22,11 +22,12 @@ class MaintenaceUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'maintenance_type_id' => 'integer|nullable|exists:maintenance_types,id',
+            'maintenance_type_id' => 'nullable|exists:maintenance_types,id',
             'user_id' => 'string|nullable|exists:users,id',
             'property_id' => 'string|nullable',
             'description' => 'string|nullable',
-            'assigned_to' => 'integer|nullable|exists:users,id'
+            'assigned_to' => 'nullable|exists:users,id',
+            'maintenance_status_id' => 'nullable|exists:maintenance_statuses,id'
         ];
     }
 }

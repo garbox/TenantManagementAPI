@@ -11,7 +11,7 @@ class Maintenance extends Model
 {
     use HasFactory; 
     
-    protected $fillable = ['maintenance_type_id', 'user_id', 'property_id', 'description', 'assigned_to'];
+    protected $fillable = ['maintenance_type_id', 'user_id', 'property_id', 'description', 'assigned_to', 'maintenance_status_id'];
     protected $hidden = [ 'created_at', 'updated_at'];
 
     public static function statusCount (){
