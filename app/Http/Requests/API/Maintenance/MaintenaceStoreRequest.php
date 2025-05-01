@@ -22,9 +22,9 @@ class MaintenaceStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'maintenance_type_id' => 'integer|required|existes:maintenance_types,id',
-            'user_id' => 'string|required|existes:users.id',
-            'property_id' => 'string|required|existes:properties.id',
+            'maintenance_type_id' => 'integer|required|exists:maintenance_types,id',
+            'user_id' => 'required|exists:users,id',
+            'property_id' => 'string|required|exists:properties,id',
             'description' => 'string|required',
         ];
     }
