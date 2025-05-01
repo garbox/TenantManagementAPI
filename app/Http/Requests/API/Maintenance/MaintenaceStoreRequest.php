@@ -14,17 +14,19 @@ class MaintenaceStoreRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+    public function prepareForValidation()
+    {
+        $this->merge([
+            'maintenance_status_id' => $this->input('maintenance_status_id', 1), // fallback to ID 1
+        ]);
+    }
+
     public function rules(): array
     {
         return [
             'maintenance_type_id' => 'integer|required|exists:maintenance_types,id',
             'user_id' => 'required|exists:users,id',
-            'property_id' => 'string|required|exists:properties,id',
+            'property_id' => 'required|exists:properties,id',
             'description' => 'string|required',
         ];
     }
