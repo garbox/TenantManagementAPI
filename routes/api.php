@@ -28,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('maintenance/report/status', [MaintenanceController::class, 'getStatus'])->name('maintenance.report.status');
     Route::resource('maintenance/type', MaintienceTypeController::class)->except(['create', 'edit']);
     Route::resource('maintenance/exspense', MaintenanceExpenseController::class)->except(['create', 'edit']);  
+    Route::get('maintenance/request/user/{user}', [UserController::class, 'getMaintenanceRequests'])->name('maintenance.user.requests');
+
     Route::resource('payment', PaymentController::class)->except(['create', 'edit']);
     Route::resource('owner', PropertyOwnerController::class)->except(['create', 'edit']);
 

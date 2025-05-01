@@ -8,6 +8,7 @@ use App\Http\Requests\API\User\UserStoreRequest;
 use App\Http\Requests\API\User\UserUpdateRequest;
 use App\Http\Requests\API\User\UserRoleUpdateRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\Maintenance;
 
 class UserController extends Controller
 {
@@ -88,5 +89,11 @@ class UserController extends Controller
     
         // If authentication fails
         return response()->json(['message' => 'Invalid credentials'], 401);
+    }
+
+    public function getMaintenanceRequests(int $user_id){
+        return Maintenance::with('assignedTo', 'property','user', 'type', 'status')
+            ->where('user_id', $user_id)
+            ->where('maintenance_status_id', "<" , 11 )->get();
     }
 }
