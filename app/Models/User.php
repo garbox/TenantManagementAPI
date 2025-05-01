@@ -43,6 +43,10 @@ class User extends Authenticatable
         return $this->hasMany(Agreement::class);
     }
 
+    public function latestAgreement(){
+        return $this->hasOne(Agreement::class)->latest();
+    }
+
     public function role(): BelongsTo {
         return $this->belongsTo(Role::class);
     }

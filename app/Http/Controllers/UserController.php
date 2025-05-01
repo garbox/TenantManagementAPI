@@ -82,7 +82,8 @@ class UserController extends Controller
     
         // Attempt to authenticate the user
         if (Auth::attempt($credentials)) {
-            $user = Auth::user(); // Get the authenticated user
+            $user = Auth::user();
+            $user->load('latestAgreement');
             $user->token = $user->createToken('user')->plainTextToken; // Generate a token
             return response()->json($user, 200);
         }
