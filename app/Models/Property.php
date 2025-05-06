@@ -34,4 +34,11 @@ class Property extends Model
     {
         return $this->hasMany(Maintenance::class);
     }
+
+    public function activeAgreement()
+    {
+        return $this->hasOne(Agreement::class)
+            ->whereDate('start_date', '<=', now())
+            ->whereDate('end_date', '>=', now());
+    }
 }

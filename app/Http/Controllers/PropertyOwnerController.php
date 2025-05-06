@@ -5,32 +5,37 @@ namespace App\Http\Controllers;
 use App\Models\PropertyOwner;
 use App\Http\Requests\API\PropertyOwner\PropertyOwnerUpdateRequest;
 use App\Http\Requests\API\PropertyOwner\PropertyOwnerStoreRequest;
+use Illuminate\Support\Carbon;
 
 class PropertyOwnerController extends Controller
 {
     // show all property owner (user:admin)
-    public function index(){
+    public function index()
+    {
         return PropertyOwner::all()->toJson();
     }
 
     // show single property owner (Role: user:admin, user:owner)
-    public function show(int $owner_id){
-        return PropertyOwner::findOrFail($owner_id)->toJson();
+    public function show(int $owner_id)
+    {
+        return PropertyOwner::with('properties', 'properties.state', 'properties.activeAgreement')
+            ->FindOrFail($owner_id);
     }
 
-    public function store(PropertyOwnerStoreRequest $request){
+    public function store(PropertyOwnerStoreRequest $request)
+    {
         return PropertyOwner::create($request->input())->toJson();
     }
 
     // update single property owner (Role: user:admin, user:owner)
-    public function update(PropertyOwnerUpdateRequest $request, int $owner_id){
+    public function update(PropertyOwnerUpdateRequest $request, int $owner_id)
+    {
         $owner = PropertyOwner::find($owner_id);
 
-        if($owner){
-            if($owner->update($request->input())){
+        if ($owner) {
+            if ($owner->update($request->input())) {
                 return $owner->toJson();
-            }
-            else{
+            } else {
                 return response()->json(['message' => "Property owner could not be updated"]);
             }
         }
@@ -39,10 +44,11 @@ class PropertyOwnerController extends Controller
     }
 
     // delete single types (Role: user:admin)
-    public function destroy(int $owner_id){
+    public function destroy(int $owner_id)
+    {
         $owner = PropertyOwner::find($owner_id);
 
-        if($owner){
+        if ($owner) {
             $owner->delete();
             return response()->json(['message' => 'Property owner deleted'], 200);
         }
