@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Property;
 use App\Models\PropertyOwner;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PropertyFactory extends Factory
@@ -20,9 +21,9 @@ class PropertyFactory extends Factory
         return [
             'address' => $this->faker->streetAddress,
             'city' => $this->faker->city,
-            'state_id' => $this->faker->numberBetween(1, 50), // Assuming state IDs range from 1 to 50
+            'state_id' => $this->faker->numberBetween(1, 50),
             'zip' => $this->faker->postcode,
-            'property_owner_id' => PropertyOwner::pluck('id')->random(), // Random owner ID from the database
+            'user_id' => User::where('role_id', 4)->first(), 
         ];
     }
 }

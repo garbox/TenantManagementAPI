@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
         $this->call(Role::class);
         $this->call(States::class);
         $this->call(User::class);
-        $this->call(PropertyOwner::class);
         $this->call(PropertySeeder::class);
         $this->call(Maintenance::class);
         $this->call(AgreementStatusSeeder::class);

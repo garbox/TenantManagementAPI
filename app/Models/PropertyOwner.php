@@ -11,7 +11,7 @@ class PropertyOwner extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['name', 'email', 'phone', 'address', 'city', 'state_id', 'zip', 'dba'];
+    protected $fillable = ['user_id','phone', 'address', 'city', 'state_id', 'zip', 'dba'];
     protected $hidden = ['created_at', 'updated_at'];
 
     public function allProperties(int $owner_id){
@@ -28,5 +28,10 @@ class PropertyOwner extends Model
 
     public function state(): BelongsTo{
         return $this->belongsTo(State::class);
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

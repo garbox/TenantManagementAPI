@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Models\PropertyOwner;
 use App\Models\State;
+use App\Models\User;
 
 return new class extends Migration
 {
@@ -15,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(User::class)->references('id')->on('users');
             $table->string('address');
             $table->string('city');
-            $table->foreignIdFor(State::class)->references('id')->on('states');
             $table->string('zip');
-            $table->foreignIdFor(PropertyOwner::class)->references('id')->on('property_owners');
+            $table->foreignIdFor(State::class)->references('id')->on('states');
             $table->timestamps();
         });
     }
