@@ -15,9 +15,8 @@ class PropertyController extends Controller
 
     // show single property (Role: user:admin, user:tenate, user:maintenence)
     public function show(int $property_id){
-        return Property::with(['owner', 'owner.state', 'state', 'agreements.user', 'maintenances.type', 'maintenances.status'])
-        ->findOrFail($property_id)
-        ->toJson();
+        return Property::with(['owner', 'owner.propertyOwner.state', 'state', 'agreements.tenant', 'maintenances.type', 'maintenances.status'])
+        ->findOrFail($property_id);
     }
 
     // show single property (Role: user:admin, user:tenate, user:maintenence)

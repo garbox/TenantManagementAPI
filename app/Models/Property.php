@@ -11,7 +11,7 @@ class Property extends Model
 {
     use HasFactory; // Add this line to enable factory support
 
-    protected $fillable = ['address', 'city', 'state_id', 'zip', 'owner_id'];
+    protected $fillable = ['address', 'unit', 'city', 'state_id', 'zip', 'owner_id'];
     protected $hidden = ['created_at', 'updated_at'];
 
     // Relationships

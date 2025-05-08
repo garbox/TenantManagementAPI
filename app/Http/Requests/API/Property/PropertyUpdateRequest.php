@@ -24,6 +24,7 @@ class PropertyUpdateRequest extends FormRequest
         return [
             'property_owner_id' => 'integer|nullable|exists:property_owners,id',
             'address' => 'string|nullable',
+            'unit' => 'string|nullable',
             'state_id' => 'integer|nullable|exists:states,id',
             'city' => 'string|nullable',
             'zip' => 'integer|nullable',

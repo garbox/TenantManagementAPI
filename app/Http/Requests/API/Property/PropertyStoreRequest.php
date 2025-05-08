@@ -24,6 +24,7 @@ class PropertyStoreRequest extends FormRequest
         return [
             'property_owner_id' => 'integer|required|existes:property_owners,id',
             'address' => 'string|required',
+            'unit' => 'string|nullable',
             'state_id' => 'string|required|existes:states,id',
             'city' => 'string|required',
             'zip' => 'integer|required',

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PropertyOwner;
 use App\Http\Requests\API\PropertyOwner\PropertyOwnerUpdateRequest;
 use App\Http\Requests\API\PropertyOwner\PropertyOwnerStoreRequest;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 
 class PropertyOwnerController extends Controller
@@ -18,7 +19,7 @@ class PropertyOwnerController extends Controller
     // show single property owner (Role: user:admin, user:owner)
     public function show(int $owner_id)
     {
-        return PropertyOwner::with('properties', 'properties.state', 'properties.activeAgreement')
+        return User::with('properties', 'properties.state', 'properties.activeAgreement.status', 'properties.activeAgreement.tenant')
             ->FindOrFail($owner_id);
     }
 

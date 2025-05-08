@@ -27,8 +27,8 @@ class Agreement extends Model
     }
 
     //relationships
-    public function user(): BelongsTo{
-        return $this->belongsTo(User::class, 'tenate _id');
+    public function tenant(): BelongsTo{
+        return $this->belongsTo(User::class, 'tenant_id');
     }
 
     public function property(): BelongsTo{

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('owner_id')->constrained('users');
             $table->string('address');
+            $table->string('unit')->nullable();
             $table->string('city');
             $table->string('zip');
             $table->foreignIdFor(State::class)->references('id')->on('states');

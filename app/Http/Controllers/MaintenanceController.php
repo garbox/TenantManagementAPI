@@ -49,6 +49,6 @@ class MaintenanceController extends Controller
 
     // search for 
     public function search(MaintenanceSearch $searchParam){
-        return Maintenance::with('assignedTo', 'property','user', 'type', 'status')->where($searchParam->field, $searchParam->value)->get(); 
+        return Maintenance::with('assignedTo', 'property','user.role', 'type', 'status')->where($searchParam->field, $searchParam->value)->get(); 
     }
 }
