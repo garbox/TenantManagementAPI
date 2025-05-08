@@ -20,7 +20,7 @@ class AgreementFactory extends Factory
     public function definition(): array
     {
         return [
-            'user_id' => User::where('role_id', '!=', 2)->inRandomOrder()->first()?->id,
+            'tenate_id' => User::where('role_id', '=', 3)->inRandomOrder()->first()?->id,
             'property_id' => Property::inRandomOrder()->first()?->id,
             'file_name' => $this->faker->uuid . '.pdf',
             'security_deposit' => $this->faker->numberBetween(50000, 200000),

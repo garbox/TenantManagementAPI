@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->references('id')->on('users');
+            $table->foreignId('owner_id')->constrained('users')->onDelete('cascade');
             $table->string('address');
             $table->string('city');
             $table->string('zip');

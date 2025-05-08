@@ -23,7 +23,7 @@ class PropertyFactory extends Factory
             'city' => $this->faker->city,
             'state_id' => $this->faker->numberBetween(1, 50),
             'zip' => $this->faker->postcode,
-            'user_id' => User::where('role_id', 4)->first(), 
+            'owner_id' => User::where('role_id', 4)->first(), 
         ];
     }
 }
