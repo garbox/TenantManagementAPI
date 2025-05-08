@@ -23,7 +23,7 @@ class PropertyOwner extends Model
     }
 
     public function properties(): HasMany{
-        return $this->hasMany(Property::class);
+        return $this->hasMany(Property::class, 'owner_id');
     }
 
     public function state(): BelongsTo{

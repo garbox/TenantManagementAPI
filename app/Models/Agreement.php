@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Agreement extends Model
 {
     use HasFactory;
-    protected $fillable = [ 'user_id', 'property_id', 'file_name', 'security_deposit', 'rent', 'start_date', 'end_date'];
+    protected $fillable = [ 'tenate_id', 'property_id', 'file_name', 'security_deposit', 'rent', 'start_date', 'end_date'];
 
     protected $hidden = [ 'created_at', 'updated_at'];
 
@@ -28,7 +28,7 @@ class Agreement extends Model
 
     //relationships
     public function user(): BelongsTo{
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'tenate _id');
     }
 
     public function property(): BelongsTo{

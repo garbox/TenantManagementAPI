@@ -22,7 +22,7 @@ class AgreementUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'integer|nullable|existes:users,id',
+            'tenate_id' => 'integer|nullable|existes:users,id',
             'property_id' => 'string|nullable|existes:properties.id',
             'file_name' => 'nullable|file|mimes:pdf|max:5000',
             'security_deposit' => 'integer|nullable',

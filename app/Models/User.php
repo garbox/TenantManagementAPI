@@ -41,11 +41,11 @@ class User extends Authenticatable
 
     //relationships
     public function agreements(): HasMany{
-        return $this->hasMany(Agreement::class);
+        return $this->hasMany(Agreement::class, 'tenant_id');
     }
 
     public function latestAgreement(){
-        return $this->hasOne(Agreement::class)->latest();
+        return $this->hasOne(Agreement::class, 'tenant_id')->latest();
     }
 
     public function role(): BelongsTo {
@@ -59,5 +59,9 @@ class User extends Authenticatable
     public function propertyOwner(): HasOne
     {
         return $this->hasOne(PropertyOwner::class);
+    }
+
+    public function properties(): HasMany{
+        return $this->hasMany(Property::class, 'owner_id');
     }
 }

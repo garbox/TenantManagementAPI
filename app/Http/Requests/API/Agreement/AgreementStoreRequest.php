@@ -22,7 +22,7 @@ class AgreementStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'integer|required|existes:users,id',
+            'tenate_id' => 'integer|required|existes:users,id',
             'property_id' => 'string|required|existes:properties.id',
             'file_name' => 'required|file|mimes:pdf|max:5000',
             'security_deposit' => 'required|numeric',

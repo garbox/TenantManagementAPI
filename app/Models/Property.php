@@ -11,7 +11,7 @@ class Property extends Model
 {
     use HasFactory; // Add this line to enable factory support
 
-    protected $fillable = ['address', 'city', 'state_id', 'zip', 'property_owner_id'];
+    protected $fillable = ['address', 'city', 'state_id', 'zip', 'owner_id'];
     protected $hidden = ['created_at', 'updated_at'];
 
     // Relationships
@@ -22,7 +22,7 @@ class Property extends Model
 
     public function owner(): BelongsTo
     {
-        return $this->belongsTo(PropertyOwner::class, 'property_owner_id');
+        return $this->belongsTo(User::class, 'owner_id');
     }
 
     public function state(): BelongsTo

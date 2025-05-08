@@ -16,7 +16,7 @@ return new class extends Migration
     {
         Schema::create('agreements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('tenate_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('tenant_id')->constrained('users')->onDelete('cascade');
             $table->foreignIdFor(Property::class)->references('id')->on('properties');
             $table->string('file_name');
             $table->integer('security_deposit');
