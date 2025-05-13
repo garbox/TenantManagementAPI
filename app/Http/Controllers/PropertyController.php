@@ -10,7 +10,7 @@ class PropertyController extends Controller
 {
     // show all properties (user:admin)
     public function index(){
-        return Property::with(['owner', 'state'])->get()->toJson();
+        return Property::with(['owner', 'state'])->get();
     }
 
     // show single property (Role: user:admin, user:tenate, user:maintenence)
@@ -21,7 +21,7 @@ class PropertyController extends Controller
 
     // show single property (Role: user:admin, user:tenate, user:maintenence)
     public function store(PropertyStoreRequest $request){
-        return Property::create($request->input())->toJson();
+        return Property::create($request->input());
     }
     
     // update single types (Role: user:admin, user:owner)
@@ -30,7 +30,7 @@ class PropertyController extends Controller
 
         if($property){
             if($property->update($request->input())){
-                return $property->toJson();
+                return $property;
             }
             else{
                 return response()->json(['message' => "Property could not be updated"]);

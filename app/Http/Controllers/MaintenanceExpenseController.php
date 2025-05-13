@@ -11,12 +11,12 @@ class MaintenanceExpenseController extends Controller
 {
     // show all Exspenses  (user:admin)
     public function index(){
-        return MaintenanceExpense::all()->toJson();
+        return MaintenanceExpense::all();
     }
 
     // show single Exspenses (Role: user:admin, user:maintenence)
     public function show(int $expense_id){
-        return MaintenanceExpense::findOrFail($expense_id)->toJson();
+        return MaintenanceExpense::findOrFail($expense_id);
     }
 
     // show single Exspenses (Role: user:admin, user:maintenence)
@@ -30,7 +30,7 @@ class MaintenanceExpenseController extends Controller
 
         if($mainExpense){
             if($mainExpense->update($request->input())){
-                return $mainExpense->toJson();
+                return $mainExpense;
             }
             else{
                 return response()->json(['message' => "Maintenance expense could not be updated"]);

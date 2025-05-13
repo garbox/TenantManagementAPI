@@ -15,7 +15,7 @@ class UserController extends Controller
     // show all users (user:admin)
     public function index()
     {
-        return User::with(['role'])->get()->toJson();
+        return User::with(['role'])->get();
     }
 
     // show single user (Role: user:admin, user:owner, user:tenant, user:maintence)
@@ -45,7 +45,7 @@ class UserController extends Controller
 
         if ($user) {
             if ($user->update($request->input())) {
-                return $user->toJson();
+                return $user;
             } else {
                 return response()->json(['message' => "User could not be updated"]);
             }
@@ -61,7 +61,7 @@ class UserController extends Controller
 
         // Update only the role_id field
         if ($user->update(['role_id' => $request->input('role_id')])) {
-            return $user->toJson();
+            return $user;
         } else {
             return response()->json(['message' => "User role could not be updated"], 500);
         }

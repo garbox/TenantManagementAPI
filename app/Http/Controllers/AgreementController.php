@@ -12,13 +12,13 @@ class AgreementController extends Controller
     // show all Agreements (user:admin)
     public function index()
     {
-        return Agreement::with('user', 'property')->get();
+        return Agreement::with('tenant', 'property')->get();
     }
 
     // show single agreement (Role: user:admin, user:tenate)
     public function show(int $agreement_id)
     {
-        return Agreement::with('user', 'property.state', 'property.owner.propertyOwner.state')->findOrFail($agreement_id);
+        return Agreement::with('tenant', 'property.state', 'property.owner.propertyOwner.state')->findOrFail($agreement_id);
     }
 
     //store aggrement (Role: user:admin)

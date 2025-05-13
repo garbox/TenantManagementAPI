@@ -27,7 +27,7 @@ class MaintenanceController extends Controller
 
     //create new Request (Role: user:admin, user:tenate, user:maintenence)
     public function store(MaintenaceStoreRequest $request){
-        return Maintenance::create($request->input())->toJson();
+        return Maintenance::create($request->input());
     }
 
     // delete single Request (Role: user:admin, ?user:maintenence?)

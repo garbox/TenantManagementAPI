@@ -13,7 +13,7 @@ class PropertyOwnerController extends Controller
     // show all property owner (user:admin)
     public function index()
     {
-        return PropertyOwner::all()->toJson();
+        return PropertyOwner::all();
     }
 
     // show single property owner (Role: user:admin, user:owner)
@@ -25,7 +25,7 @@ class PropertyOwnerController extends Controller
 
     public function store(PropertyOwnerStoreRequest $request)
     {
-        return PropertyOwner::create($request->input())->toJson();
+        return PropertyOwner::create($request->input());
     }
 
     // update single property owner (Role: user:admin, user:owner)
@@ -35,7 +35,7 @@ class PropertyOwnerController extends Controller
 
         if ($owner) {
             if ($owner->update($request->input())) {
-                return $owner->toJson();
+                return $owner;
             } else {
                 return response()->json(['message' => "Property owner could not be updated"]);
             }

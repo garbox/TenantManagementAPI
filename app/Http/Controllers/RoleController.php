@@ -10,15 +10,15 @@ class RoleController extends Controller
 {
     
     public function index(){
-        return Role::all()->toJson();
+        return Role::all();
     }
 
     public function show(int $role_id){
-        return Role::findOrFail($role_id)->toJson();
+        return Role::findOrFail($role_id);
     }
 
     public function store(RoleStoreRequest $request){
-        return Role::create($request->input())->toJson();
+        return Role::create($request->input());
     }
 
     public function update(RoleUpdateRequest $request, int $role_id){
@@ -26,7 +26,7 @@ class RoleController extends Controller
         
         if($role){
             if($role->update($request->input())){
-                return $role->toJson();
+                return $role;
             }
             else{
                 return response()->json(['message' => "Role could not be updated"]);

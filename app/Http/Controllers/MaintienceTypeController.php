@@ -29,7 +29,7 @@ class MaintienceTypeController extends Controller
 
         if($mainType){
             if($mainType->update($request->input())){
-                return $mainType->toJson();
+                return $mainType;
             }
             else{
                 return response()->json(['message' => "Maintenance type could not be updated"]);
