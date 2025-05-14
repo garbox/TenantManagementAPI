@@ -34,7 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('maintenance/report/status', [MaintenanceController::class, 'getStatus'])->name('maintenance.report.status');
     Route::resource('maintenance/status', MaintenanceStatusController::class)->except(['create', 'edit','update', 'destroy', 'store']);
 
-    Route::resource('payment', PaymentController::class)->except(['create', 'edit']);
+    Route::post('payment/intent', [PaymentController::class, 'createPaymentIntent'])->name('user.payment.intent');
+    Route::post('payment/confirm', [PaymentController::class, 'confirmPayment'])->name('user.payment.confirm');
     Route::resource('owner', PropertyOwnerController::class)->except(['create', 'edit']);
 
     Route::resource('state', RoleController::class)->except(['create', 'edit', 'update', 'store', 'destroy']);

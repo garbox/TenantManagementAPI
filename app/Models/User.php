@@ -18,41 +18,47 @@ class User extends Authenticatable
 {
     use HasApiTokens, Billable, HasFactory, Notifiable;
 
-    protected $fillable = ['id','name', 'email', 'password', 'role_id'];
+    protected $fillable = ['id', 'name', 'email', 'password', 'role_id', "stripe_customer_id"];
 
-    protected $hidden = [ 'password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token'];
 
     //set role ID to 3 be default if role_id isnt passed. 
     protected $attributes = [
         'role_id' => 3,
     ];
-    
-    public function __construct($user_id = null){
+
+    public function __construct($user_id = null)
+    {
         if ($user_id) {
             parent::__construct(self::findOrFail($user_id)->toArray());
         }
     }
 
-    public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value)
+    {
         if (!empty($value)) {
             $this->attributes['password'] = Hash::make($value);
         }
     }
 
     //relationships
-    public function agreements(): HasMany{
+    public function agreements(): HasMany
+    {
         return $this->hasMany(Agreement::class, 'tenant_id');
     }
 
-    public function latestAgreement(){
+    public function latestAgreement()
+    {
         return $this->hasOne(Agreement::class, 'tenant_id')->latest();
     }
 
-    public function role(): BelongsTo {
+    public function role(): BelongsTo
+    {
         return $this->belongsTo(Role::class);
     }
 
-    public function requests(): HasMany{
+    public function requests(): HasMany
+    {
         return $this->hasMany(Maintenance::class);
     }
 
@@ -61,7 +67,18 @@ class User extends Authenticatable
         return $this->hasOne(PropertyOwner::class);
     }
 
-    public function properties(): HasMany{
+    public function properties(): HasMany
+    {
         return $this->hasMany(Property::class, 'owner_id');
+    }
+
+    public function stripeCustomerId(): HasOne
+    {
+        return $this->hasOne(StripeCustomer::class);
+    }
+
+    public function rentSchedules()
+    {
+        return $this->hasMany(RentSchedule::class);
     }
 }

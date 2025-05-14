@@ -15,6 +15,9 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class)->references('id')->on('users');
+            $table->string('stripe_id');
+            $table->string('payment_id');
+            $table->integer('amount');
             $table->timestamps();
         });
     }
