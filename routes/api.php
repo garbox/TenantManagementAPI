@@ -13,12 +13,14 @@ use App\Http\Controllers\PropertyOwnerController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MaintenanceStatusController;
+use App\Http\Controllers\StateController;
 
 Route::middleware('auth:sanctum')->group(function () {
 });
     Route::resource('user', UserController::class)->except(['create', 'edit', 'store']);
     Route::put('user/{user}/role', [UserController::class, 'updateRole'])->name('user.role.update');
     Route::post('user/register', [UserController::class, 'store'])->name('user.register');
+    Route::get('user/byrole/{role_id}', [UserController::class, 'getUsersByRoles'])->name('user.byrole');
 
     Route::resource('role', RoleController::class)->except(['create', 'edit']);
     Route::resource('property', PropertyController::class)->except(['create', 'edit']);
@@ -38,7 +40,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('payment/confirm', [PaymentController::class, 'confirmPayment'])->name('user.payment.confirm');
     Route::resource('owner', PropertyOwnerController::class)->except(['create', 'edit']);
 
-    Route::resource('state', RoleController::class)->except(['create', 'edit', 'update', 'store', 'destroy']);
+    Route::resource('state', StateController::class)->except(['create', 'edit', 'update', 'store', 'destroy','show']);
+    Route::get('state/{type}/{id?}', [StateController::class, 'stateReturnFormat'])->name('state.return.format');
 
     Route::post('login', [UserController::class, 'login'])->name('user.login');
 
