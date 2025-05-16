@@ -22,8 +22,8 @@ class MaintenaceExpenseUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'integer|nullable|existes:users,id',
-            'maintenance_id' => 'string|nullable|existes:mainteance.id',
+            'user_id' => 'integer|nullable|exists:users,id',
+            'maintenance_id' => 'string|nullable|exists:mainteance.id',
             'note' => 'string|nullable',
         ];
     }
