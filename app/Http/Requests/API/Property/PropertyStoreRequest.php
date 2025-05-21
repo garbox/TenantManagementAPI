@@ -22,7 +22,7 @@ class PropertyStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'property_owner_id' => 'integer|required|exists:property_owners,id',
+            'owner_id' => 'integer|required|exists:users,id',
             'address' => 'string|required',
             'unit' => 'string|nullable',
             'state_id' => 'string|required|exists:states,id',

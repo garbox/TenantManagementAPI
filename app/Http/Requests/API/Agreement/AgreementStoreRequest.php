@@ -22,13 +22,26 @@ class AgreementStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tenate_id' => 'integer|required|exists:users,id',
-            'property_id' => 'string|required|exists:properties.id',
-            'file_name' => 'required|file|mimes:pdf|max:5000',
-            'security_deposit' => 'required|numeric',
-            'rent' => 'required|numeric',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
+            'agreement.tenant_id' => 'required|integer|exists:users,id',
+            'agreement.property_id' => 'required|string|exists:properties,id',
+            'agreement.start_date' => 'required|date',
+            'agreement.end_date' => 'required|date',
+            'agreement.rent' => 'required|numeric',
+            'agreement.application_fee' => 'required|numeric',
+            'agreement.late_fee' => 'required|numeric',
+            'agreement.grace_period' => 'required|numeric',
+            'agreement.security_deposit' => 'required|numeric',
+            'pet.pets_allowed' => 'required|in:1,0',
+            'pet.requirement' => 'string|nullable',
+            'pet.pet_deposit' => 'numeric|nullable',
+            'pet.pet_monthly_rate' => 'numeric|nullable',
+            'maintenance.tenant_responsibilities' => 'string|nullable',
+            'maintenance.land_lord_responsibilities' => 'string|nullable',
+            'lead_paint.built_before_1978' => 'required|in:1,0',
+            'm2m.month_to_month_rent' => 'required|numeric',
+            'm2m.notice' => 'required|numeric',
+            'non_renewal.notice_length' => 'required|numeric'   
         ];
     }
 }
+

@@ -6,6 +6,13 @@ namespace App\Http\Controllers;
 use App\Models\Agreement;
 use App\Http\Requests\API\Agreement\AgreementStoreRequest;
 use App\Http\Requests\API\Agreement\AgreementUpdateRequest;
+use App\Models\LeadPaintDisclosure;
+use App\Models\MaintenanceAddendum;
+use App\Models\MonthToMonthAddendum;
+use App\Models\NonRenewalNoticeAddendum;
+use App\Models\PetAddendum;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class AgreementController extends Controller
 {
@@ -25,7 +32,22 @@ class AgreementController extends Controller
     //send notification to user via email that their document is ready to be viewed. 
     public function store(AgreementStoreRequest $request)
     {
-        return Agreement::create($request->input());
+        try {
+            DB::transaction(function () use ($request) {
+                $data = collect($request->validated());
+                $agreement = Agreement::create($request->agreement);
+                $agreement_id = $agreement->id;
+                $addendums_ids = Agreement::addendumsCreate($data, $agreement_id);
+                $agreement->update($addendums_ids);
+            });
+            return response()->json(['message' => 'Agreement and addendums created successfully.'], 201);
+        } 
+        catch (\Throwable $e) {
+            Log::error('Agreement creation failed', ['error' => $e->getMessage()]);
+            return response()->json([
+                'error' => 'Failed to create agreement.',
+            ], 500);
+        }
     }
 
     //update aggrement (Role: user:admin)

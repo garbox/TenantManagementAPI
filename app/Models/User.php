@@ -76,9 +76,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(StripeCustomer::class);
     }
-
-    public function rentSchedules()
-    {
-        return $this->hasMany(RentSchedule::class);
-    }
 }

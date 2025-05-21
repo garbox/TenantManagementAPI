@@ -88,7 +88,7 @@ class UserController extends Controller
         // Attempt to authenticate the user
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            $user->load('latestAgreement.property');
+            $user->load(['latestAgreement.property']);
             $user->token = $user->createToken('user')->plainTextToken; // Generate a token
             return response()->json($user, 200);
         }
@@ -102,5 +102,10 @@ class UserController extends Controller
         return Maintenance::with('assignedTo', 'property', 'user', 'type', 'status')
             ->where('user_id', $user_id)
             ->where('maintenance_status_id', "<", 11)->get();
+    }
+
+    public function getUsersByRoles(int $role_id)
+    {
+        return User::where('role_id', $role_id)->get(['id', 'name', 'email', 'role_id']);
     }
 }
