@@ -33,7 +33,7 @@ class RoleController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Role could not be found.'], 404);
+        return response()->json(['error' => 'Role could not be found.'], 404);
     }
 
     public function destroy(int $role_id){
@@ -42,6 +42,6 @@ class RoleController extends Controller
             $role->delete();
             return response()->json(['message' => 'Role deleted successfully'], 200);
         }
-        return response()->json(['message' => 'Role not found'], 404);
+        return response()->json(['error' => 'Role not found'], 404);
     }
 }

@@ -64,7 +64,7 @@ class AgreementController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Role could not be found.'], 404);
+        return response()->json(['error' => 'Role could not be found.'], 404);
     }
 
     //delete aggrement (Role: user:admin)

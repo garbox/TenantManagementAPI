@@ -33,11 +33,11 @@ class MaintenanceExpenseController extends Controller
                 return $mainExpense;
             }
             else{
-                return response()->json(['message' => "Maintenance expense could not be updated"]);
+                return response()->json(['error' => "Maintenance expense could not be updated"]);
             }
         }
 
-        return response()->json(['message' => 'Maintenance exspense recored not found.']);
+        return response()->json(['error' => 'Maintenance exspense recored not found.']);
     }
 
     // delete single Expenses (Role: user:admin, user:maintenence)
@@ -49,7 +49,7 @@ class MaintenanceExpenseController extends Controller
             return response()->json(['message' => 'Maintenance expense has been deleted.']);
         }
     
-        return response()->json(['message' => 'Maintenance expense could not be found'], 404);
+        return response()->json(['error' => 'Maintenance expense could not be found'], 404);
     }
 
 }

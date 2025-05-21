@@ -37,7 +37,7 @@ class PropertyController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Property could not found']);
+        return response()->json(['error' => 'Property could not found']);
     }
 
     // delete single types (Role: user:admin)
@@ -49,6 +49,6 @@ class PropertyController extends Controller
             return response()->json(['message' => 'Property deleted'], 200);
         }
 
-        return response()->json(['message' => 'Property not found'], 404);
+        return response()->json(['error' => 'Property not found'], 404);
     }
 }

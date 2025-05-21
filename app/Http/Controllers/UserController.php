@@ -47,11 +47,11 @@ class UserController extends Controller
             if ($user->update($request->input())) {
                 return $user;
             } else {
-                return response()->json(['message' => "User could not be updated"]);
+                return response()->json(['error' => "User could not be updated"]);
             }
         }
 
-        return response()->json(['message' => 'User could not be found.'], 404);
+        return response()->json(['error' => 'User could not be found.'], 404);
     }
 
     public function updateRole(UserRoleUpdateRequest $request, int $user_id)
@@ -63,7 +63,7 @@ class UserController extends Controller
         if ($user->update(['role_id' => $request->input('role_id')])) {
             return $user;
         } else {
-            return response()->json(['message' => "User role could not be updated"], 500);
+            return response()->json(['error' => "User role could not be updated"], 500);
         }
     }
 
@@ -75,7 +75,7 @@ class UserController extends Controller
             $user->delete();
             return response()->json(['message' => "User deleted successfuly"], 200);
         } else {
-            return response()->json(['message' => "User not found"], 404);
+            return response()->json(['error' => "User not found"], 404);
         };
     }
 
@@ -94,7 +94,7 @@ class UserController extends Controller
         }
 
         // If authentication fails
-        return response()->json(['message' => 'Invalid credentials'], 401);
+        return response()->json(['error' => 'Invalid credentials'], 401);
     }
 
     public function getMaintenanceRequests(int $user_id)

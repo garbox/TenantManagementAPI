@@ -36,7 +36,7 @@ class MaintienceTypeController extends Controller
             }
         }
         
-        return response()->json(['message' => 'Maintenance type not found']);
+        return response()->json(['error' => 'Maintenance type not found']);
     }
 
     public function destroy(int $type_id){
@@ -47,6 +47,6 @@ class MaintienceTypeController extends Controller
             return response()->json(['message' => 'Maintenance type has been deleted.']);
         }
     
-        return response()->json(['message' => 'Maintenance type could not be found'], 404);
+        return response()->json(['error' => 'Maintenance type could not be found'], 404);
     }
 }

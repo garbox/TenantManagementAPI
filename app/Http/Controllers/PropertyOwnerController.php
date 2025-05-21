@@ -41,7 +41,7 @@ class PropertyOwnerController extends Controller
             }
         }
 
-        return response()->json(['message' => 'Property owner could not be found.'], 404);
+        return response()->json(['error' => 'Property owner could not be found.'], 404);
     }
 
     // delete single types (Role: user:admin)
@@ -54,6 +54,6 @@ class PropertyOwnerController extends Controller
             return response()->json(['message' => 'Property owner deleted'], 200);
         }
 
-        return response()->json(['message' => 'Property owner not found'], 404);
+        return response()->json(['error' => 'Property owner not found'], 404);
     }
 }

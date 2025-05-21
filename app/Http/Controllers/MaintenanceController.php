@@ -39,7 +39,7 @@ class MaintenanceController extends Controller
             return response()->json(['message' => 'Maintenance requst has been deleted.']);
         }
 
-        return response()->json(['message' => 'Maintenance request could not be found']);
+        return response()->json(['error' => 'Maintenance request could not be found']);
 
     }
     
