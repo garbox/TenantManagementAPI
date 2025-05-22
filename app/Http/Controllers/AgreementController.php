@@ -6,11 +6,6 @@ namespace App\Http\Controllers;
 use App\Models\Agreement;
 use App\Http\Requests\API\Agreement\AgreementStoreRequest;
 use App\Http\Requests\API\Agreement\AgreementUpdateRequest;
-use App\Models\LeadPaintDisclosure;
-use App\Models\MaintenanceAddendum;
-use App\Models\MonthToMonthAddendum;
-use App\Models\NonRenewalNoticeAddendum;
-use App\Models\PetAddendum;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
@@ -33,16 +28,19 @@ class AgreementController extends Controller
     public function store(AgreementStoreRequest $request)
     {
         try {
-            DB::transaction(function () use ($request) {
-                $data = collect($request->validated());
-                $agreement = Agreement::create($request->agreement);
+            $agreement = DB::transaction(function () use ($request) {
+                $agreement = Agreement::createMorph($request->agreement);
                 $agreement_id = $agreement->id;
-                $addendums_ids = Agreement::addendumsCreate($data, $agreement_id);
+                $addendums_ids = Agreement::addendumsCreate($request, $agreement_id);
                 $agreement->update($addendums_ids);
+                $agreement->addendums; //load addendums
+                return $agreement;
             });
-            return response()->json(['message' => 'Agreement and addendums created successfully.'], 201);
-        } 
-        catch (\Throwable $e) {
+            return response()->json([
+                'message' => 'Agreement and Addendums created successfully',
+                'data' => $agreement
+            ]);
+        } catch (\Throwable $e) {
             Log::error('Agreement creation failed', ['error' => $e->getMessage()]);
             return response()->json([
                 'error' => 'Failed to create agreement.',
