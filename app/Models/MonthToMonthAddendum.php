@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class MonthToMonthAddendum extends Model
 {
     protected $fillable = ['month_to_month_rent', 'notice', 'agreement_id'];
-    protected $hidden = ['agreement_id'];
+    protected $hidden = ['agreement_id', 'created_at', 'updated_at'];
     
     public function agreement(): BelongsTo
     {

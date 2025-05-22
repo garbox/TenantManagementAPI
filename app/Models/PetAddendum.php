@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class PetAddendum extends Model
 {
     protected $fillable = ['pets_allowed', 'requirement', 'pet_deposit', 'pet_monthly_rate', 'agreement_id'];
-    protected $hidden = ['agreement_id'];
+    protected $hidden = ['agreement_id', 'created_at', 'updated_at'];
 
     public function agreement(): BelongsTo
     {

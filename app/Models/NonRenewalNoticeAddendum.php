@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class NonRenewalNoticeAddendum extends Model
 {
     protected $fillable =['notice_length', 'agreement_id'];
-    protected $hidden =['agreement_id'];
+    protected $hidden = ['agreement_id', 'created_at', 'updated_at'];
     
     public function agreement(): BelongsTo
     {

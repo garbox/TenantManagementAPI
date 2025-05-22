@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class MaintenanceAddendum extends Model
 {
     protected $fillable = ['tenant_responsibilities', 'land_lord_responsibilities', 'agreement_id'];
-    protected $hidden = ['agreement_id'];
+    protected $hidden = ['agreement_id', 'created_at', 'updated_at'];
     
     public function agreement(): BelongsTo
     {
